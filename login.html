@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function f1(){
+           let username = document.getElementById("name").value;
+           let password = document.getElementById("pass").value; 
+           if(username !== "john@gmail.com" || password !=="1234"){
+            msg.innerHTML="Access Denied"
+           }else{
+            msg.innerHTML="Welcome John"
+           }
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="name" placeholder="Enter address or phone number"><br><br>
+    <input type="password" id="pass" placeholder="Password"><br><br>
+    <button onclick="f1()">Log in</button>
+    <hr>
+    <div id="msg"></div>
+</body>
+</html>
