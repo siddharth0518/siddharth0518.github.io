@@ -46,6 +46,12 @@
           },0);
           divTotal.innerHTML=total;
         };
+        const displayCart=()=>{
+          divCartBlock.style.display="block";
+        }
+        const HideCart=()=>{
+          divCartBlock.style.display="none";
+        }
       const showCart = () => {
         let str = "";
         products.map((value) => {
@@ -74,12 +80,14 @@
   </head>
   <body onload="showProducts()">
     <h1>My Store</h1>
-    <h3>Cart :<span id="items"></span> </h3>
+    <h3 onclick="displayCart()">Cart :<span id="items"></span> </h3>
     <hr />
     <h3>Products</h3>
     <div id="divProducts"></div>
+    <div id="divCartBlock" style="display: none" >
     <h3>My Cart</h3>
     <div id="divCart"></div>
     <div id="divTotal"></div>
+  </div>
   </body>
 </html>
