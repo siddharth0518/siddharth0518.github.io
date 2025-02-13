@@ -30,15 +30,22 @@
           }
           showCart();
          };
-         const calculateTotal = ()=>{
-           let total = 0;
-           products.map((value)=>{
-             if(cart[value.id]){
-               total += value.price*cart[value.id];
-             }
-           });
-           return total;
-         };
+        //  const calculateTotal = ()=>{
+        //    let total = 0;
+        //    products.map((value)=>{
+        //      if(cart[value.id]){
+        //        total += value.price*cart[value.id];
+        //      }
+        //    });
+        //    return total;
+        //  };
+
+        const showTotal=()=>{
+          let total=products.reduce((sum,value)=>{
+            return sum+value.price*(cart[value.id]?cart[value.id]:0);
+          },0);
+          divTotal.innerHTML=total;
+        };
       const showCart = () => {
         let str = "";
         products.map((value) => {
@@ -46,10 +53,13 @@
             str += `
             <li>${value.name}-$${value.price}-<button onclick='decrement(${value.id})'>-</button>${cart[value.id]}<button onClick='increment(${value.id})'>+</button>-$${value.price*cart[value.id]}</li>
             `;
+            showTotal();
           }
         });
         divCart.innerHTML = str;
-        divTotal.innerHTML = `<h3>Total: $${calculateTotal()}</h3>`;
+        let count = Object.keys(cart).length;
+        items.innerHTML = count;
+        // divTotal.innerHTML = `<h3>Total: $${calculateTotal()}</h3>`;
       };
       const showProducts = () => {
         let str = "";
@@ -64,6 +74,7 @@
   </head>
   <body onload="showProducts()">
     <h1>My Store</h1>
+    <h3>Cart :<span id="items"></span> </h3>
     <hr />
     <h3>Products</h3>
     <div id="divProducts"></div>
